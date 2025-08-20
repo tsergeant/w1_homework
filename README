@@ -1,0 +1,128 @@
+WEB TECHNOLOGIES 1 — STUDENT REPO (READ ME FIRST)
+
+This is the single repository you will use all semester. Each week’s work lives in its own folder:
+
+  hw01/
+  hw02/
+  hw03/
+  ...
+  scripts/         (helper scripts — do not edit)
+  .vscode/         (workspace settings & tasks — do not edit)
+
+Only edit files inside the current hwNN/ folder unless told otherwise.
+
+
+==================================================
+0) ONE-TIME SETUP
+==================================================
+0. Set up account at github.com (if needed)
+1. Install Node.js LTS (on your computer): https://nodejs.org (if needed)
+2. Install Git (on your computer) : https://git-scm.com (if needed)
+3. Clone the course repo:
+     git clone https://github.com/tsergeant/w1_homework.git
+     cd w1_homework
+     npm ci
+4. Rename remote from "origin" to "upstream":
+    git remote rename origin upstream
+    git remote -v 
+5. At github.com create a new PRIVATE repo called w1_homework (don't have it create any files).
+6. Follow the instructions at the bottom of the repo page to push an existing repository from the command-line. On your computer:
+    git remote add origin git@github.com:your_user_name/w1_homework.git
+    git branch -M main
+    git push -u origin main
+
+==================================================
+1) GET WEEKLY FILES FROM THE INSTRUCTOR
+==================================================
+Every week (before you start work):
+    git fetch upstream
+    git switch main
+    git merge upstream/main       (or: git pull upstream main)
+
+This brings in the new hwNN/ folder and any course updates. Avoid changing prior weeks unless asked.
+
+Or you can be brave and do:
+    git pull upstream
+    
+
+
+==================================================
+2) RUN THE SITE LOCALLY (PICK YOUR WEEK)
+==================================================
+A) Using VS Code (recommended)
+   - Menu: Terminal -> Run Task… -> “Serve (pick hw)”
+   - When prompted, enter the folder (example: hw03)
+   - Open http://localhost:8080
+
+B) Using the terminal
+   npm run serve -- --hw=hw03
+
+
+==================================================
+3) FORMAT AND LINT (REQUIRED BEFORE SUBMITTING)
+==================================================
+A) Using VS Code
+   - Menu: Terminal -> Run Task… -> “Check (pick hw)”
+   - Enter the folder (example: hw03)
+
+B) Using the terminal
+   npm run check -- --hw=hw03
+
+This runs Prettier (format), HTML-Validate, Stylelint, and ESLint only inside the chosen week.
+
+
+==================================================
+4) CREATE YOUR SUBMISSION ZIP (UPLOAD TO CANVAS)
+==================================================
+A) Using VS Code
+   - Menu: Terminal -> Run Task… -> “Zip (pick hw)”
+   - Enter the folder (example: hw03)
+
+B) Using the terminal
+   npm run zip -- --hw=hw03
+
+Output file: submission-hw03.zip
+Upload this ZIP in Canvas for the week’s assignment.
+
+
+==================================================
+5) ACADEMIC INTEGRITY AND WORKSPACE RULES
+==================================================
+- No AI/code-generation tools. Common assistants are disabled in this workspace.
+- Keep your commit history incremental; avoid one giant commit.
+
+
+==================================================
+6) QUICK WORKFLOW (CHEAT SHEET)
+==================================================
+1. Get the new week:
+     git pull upstream main
+2. Serve:
+     npm run serve -- --hw=hwNN
+3. Work in:
+     hwNN/
+4. Run checks:
+     npm run check -- --hw=hwNN
+5. Make ZIP:
+     npm run zip -- --hw=hwNN
+6. (Optional) Create snapshot bundle from <repo>-backup/ and upload it.
+
+
+==================================================
+7) TROUBLESHOOTING
+==================================================
+- Port 8080 already in use:
+     npx http-server hw03 -p 8081 -c -1
+- Linters failing:
+     npm run check -- --hw=hwNN
+  Read the errors, fix, and re-run.
+- Didn’t get the new week? Verify/pull upstream:
+     git remote -v
+     git remote add upstream https://github.com/tsergeant/w1_homework.git   (if missing)
+     git pull upstream main
+- Large files:
+  Do not commit big binaries (videos/huge images) without asking.
+- Secrets:
+  Never store API keys or passwords in this repo or the backup.
+
+

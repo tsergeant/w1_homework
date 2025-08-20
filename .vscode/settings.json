@@ -1,0 +1,8 @@
+{
+	"files.exclude": { "**/node_modules": true, "**/.git": true },
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"github.copilot.enable": { "*": false },
+	"codeActionsOnSave": { "source.fixAll.eslint": true, "source.fixAll.stylelint": true }
+}
+

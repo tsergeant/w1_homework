@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"inputs": [
+		{ "id": "hw", "type": "promptString", "description": "Which folder? (e.g., hw01)", "default": "hw01" }
+	],
+	"tasks": [
+		{
+			"label": "Serve (pick hw)",
+			"type": "shell",
+			"command": "npm run serve -- --hw=${input:hw}",
+			"isBackground": true,
+			"runOptions": { "runOn": "folderOpen" },
+			"problemMatcher": []
+		},
+		{
+			"label": "Check (pick hw)",
+			"type": "shell",
+			"command": "npm run check -- --hw=${input:hw}",
+			"problemMatcher": []
+		},
+		{
+			"label": "Zip (pick hw)",
+			"type": "shell",
+			"command": "npm run zip -- --hw=${input:hw}",
+			"problemMatcher": []
+		}
+	]
+}
+
