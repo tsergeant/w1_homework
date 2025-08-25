@@ -19,17 +19,18 @@ Only edit files inside the current hwNN/ folder unless told otherwise.
 1. Install Node.js LTS (on your computer): https://nodejs.org (if needed)
 2. Install Git (on your computer) : https://git-scm.com (if needed)
 3. Clone the course repo:
-     git clone https://github.com/tsergeant/w1_homework.git
-     cd w1_homework
-     npm ci
+   git clone https://github.com/tsergeant/w1_homework.git
+   cd w1_homework
+   npm ci
 4. Rename remote from "origin" to "upstream":
-    git remote rename origin upstream
-    git remote -v 
+   git remote rename origin upstream
+   git remote -v
 5. At github.com create a new PRIVATE repo called w1_homework (don't have it create any files).
-6. Follow the instructions at the bottom of the repo page to push an existing repository from the command-line. On your computer:
-    git remote add origin git@github.com:your_user_name/w1_homework.git
-    git branch -M main
-    git push -u origin main
+6. Invite the instructor to your private repo (Settings $\rightarrow$ Collaborators): add terrys@gmail.com.
+7. Follow the instructions at the bottom of the repo page to push an existing repository from the command-line. On your computer:
+   git remote add origin git@github.com:your_user_name/w1_homework.git
+   git branch -M main
+   git push -u origin main
 
 ==================================================
 1) GET WEEKLY FILES FROM THE INSTRUCTOR
