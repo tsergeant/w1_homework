@@ -1,2 +1,1 @@
-console.log("HW01 ready");
-
+console.log('HW01 ready');

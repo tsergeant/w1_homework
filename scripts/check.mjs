@@ -9,7 +9,7 @@ function run(bin, args) {
 }
 
 run('prettier', ['-w', dir]);
-run('html-validate', [`${dir}/**/*.html`]);
+run('html-validate', ['--config', '.htmlvalidate.json', `${dir}/**/*.html`]);
 run('stylelint', [`${dir}/**/*.css`]);
 run('eslint', [dir, '--ext', '.js']);
 
