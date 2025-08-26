@@ -1,24 +1,21 @@
-// scripts/_dir.mjs
+import fs from "node:fs";
+import path from "node:path";
+
 export function getHwDir() {
 	const args = process.argv.slice(2);
 
-	// Try in this order:
-	// 1) npm run ... -- --hw=hw03   (parse --hw=)
-	let flagEq = (args.find(a => a.startsWith('--hw=')) || '').split('=')[1];
+	// --hw=NAME or --hw NAME
+	const eq = (args.find(a => a.startsWith("--hw=")) || "").split("=")[1];
+	const ix = args.indexOf("--hw");
+	const next = ix !== -1 && args[ix + 1] ? args[ix + 1] : null;
 
-	// 2) npm run ... -- --hw hw03   (parse --hw <val>)
-	let flagNext = null;
-	const idx = args.indexOf('--hw');
-	if (idx !== -1 && args[idx + 1]) flagNext = args[idx + 1];
+	// positional candidate (first arg that exists as a directory)
+	const positional = args.find(a => fs.existsSync(a) && fs.statSync(a).isDirectory());
 
-	// 3) npm run ... -- hw03        (positional that looks like hwNN)
-	let positional = args.find(a => /^hw\d{2}$/.test(a));
+	// classic hwNN
+	const hwnn = args.find(a => /^hw\d{2}$/.test(a));
 
-	const raw = flagEq || flagNext || positional || process.env.npm_config_hw || 'hw01';
-
-	if (!/^hw\d{2}$/.test(raw)) {
-		console.error('Pick a week using: npm run <task> -- --hw=hw03  OR  npm run <task> -- hw03');
-		process.exit(2);
-	}
-	return raw;
+	const pick = eq || next || positional || hwnn || process.env.npm_config_hw || "hw01";
+	const dir = fs.existsSync(pick) ? pick : "hw01";
+	return path.normalize(dir);
 }

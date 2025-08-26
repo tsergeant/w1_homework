@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>HTML Demo for Web I</title>
+	</head>
+
+	<body>
+		<h1>Document-Level Tags</h1>
+		<p>
+			Take a look at the source of the <a href="helloworld.html">Hello World</a> web page to get
+			see a short demo of the <code>&lt;html&gt;, &lt;head&gt;, &lt;body&gt;,</code> and
+			<code>&lt;comment&gt;</code> tags.
+		</p>
+
+		<!--****************************************************************-->
+		<hr />
+		<hr />
+		<h1>Formatting Text</h1>
+
+		<h2>Headers</h2>
+		<p>These tags are used to mark sections of a document. For example:</p>
+		<pre>
+	&lt;h1&gt;Level 1 Header&lt;/h1&gt;
+	&lt;h2&gt;Level 2 Header&lt;/h2&gt;
+	&lt;h3&gt;Level 3 Header&lt;/h3&gt;
+	&lt;h4&gt;Level 4 Header&lt;/h4&gt;
+	&lt;h5&gt;Level 5 Header&lt;/h5&gt;
+	&lt;h6&gt;Level 6 Header&lt;/h6&gt;
+</pre
+		>
+
+		<p>produces ...</p>
+
+		<h1>Level 1 Header</h1>
+		<h2>Level 2 Header</h2>
+		<h3>Level 3 Header</h3>
+		<h4>Level 4 Header</h4>
+		<h5>Level 5 Header</h5>
+		<h6>Level 6 Header</h6>
+
+		<!--****************************************************************-->
+		<hr />
+		<h2>Paragraph Formatting</h2>
+		<p>To mark off a paragraph use the <code>&lt;p&gt;</code> tag:</p>
+		<pre>
+		&lt;p&gt;The									 spacing
+
+		within the p tag is							basically
+		ignored by the browswer.
+		&lt;/p&gt;
+	</pre
+		>
+		<p>The spacing within the p tag is basically ignored by the browswer.</p>
+
+		<hr />
+		<pre>
+		&lt;blockquote&gt;
+		The blockquote tag is nice for formatting long quotations that will
+		be indented from the right and left margins automatically.
+		The blockquote tag is nice for formatting long quotations that will
+		be indented from the right and left margins automatically.
+		The blockquote tag is nice for formatting long quotations that will
+		be indented from the right and left margins automatically.
+		&lt;/blockquote&gt;
+	</pre
+		>
+		<blockquote>
+			<p>
+				The blockquote tag is nice for formatting long quotations that will be indented from the
+				right and left margins automatically. The blockquote tag is nice for formatting long
+				quotations that will be indented from the right and left margins automatically. The
+				blockquote tag is nice for formatting long quotations that will be indented from the
+				right and left margins automatically.
+			</p>
+		</blockquote>
+
+		<hr />
+		<p>
+			The <code>&lt;br&gt;</code> tag is used to insert some blank lines into the document.
+			Notice, in the example below the xHTML-compliant method for encoding the opening and
+			closing tag markers in a single tag.
+		</p>
+		<pre>
+		Here is some text.
+		&lt;br /&gt;
+		&lt;br /&gt;
+		&lt;br /&gt;
+		Here is some more text.
+	</pre
+		>
+		<p>
+			Here is some text.
+			<br />
+			<br />
+			<br />
+			Here is some more text.
+		</p>
+
+		<hr />
+		<p>
+			Occasionally you may need/want to insert multiple spaces between words. This can be done
+			using the sequence <code>&amp;nbsp;</code> (NOTE: the semicolon is part of the sequence).
+		</p>
+
+		<pre>
+		I need spaces between this &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; that.
+	</pre
+		>
+		<p>
+			I need spaces between this &nbsp;&nbsp;&nbsp;&nbsp;that. An alternative is to use the
+			<code>&lt;pre&gt;</code> tag which will let you format your text however you want.
+		</p>
+		<pre>
+		&lt;pre&gt;
+		The									 spacing
+
+		within the pre tag is							&lt;em&gt;not&lt;/em&gt;
+		ignored by the browswer.
+		&lt;/pre&gt;
+	</pre
+		>
+
+		<pre>
+		The									 spacing
+
+		within the pre tag is							<em>not</em>
+		ignored by the browswer.
+	</pre
+		>
+		<hr />
+		<p>The &lt;hr /&gt; tag is used to display horizontal lines throughout this document.</p>
+
+		<hr />
+		<h2>Text Styles</h2>
+		<p>Consdering the following encoding:</p>
+		<pre>
+		It is of &lt;strong&gt;utmost importance&lt;/strong&gt; that you
+		understand what I am demonstrating.	&lt;em&gt;Don't miss it!&lt;/em&gt;
+	</pre
+		>
+		<p>
+			It is of <strong>utmost importance</strong> that you understand what I am demonstrating.
+			<em>Don't miss it!</em>
+		</p>
+
+		<hr />
+		<h2>Lists</h2>
+		<h3>Unordered Lists</h3>
+		<p>
+			To create a bulleted list use the <code>&lt;ul&gt;</code> and <code>&lt;li&gt;</code>
+			tags. Notice that lists can be nested.
+		</p>
+
+		<pre>
+	&lt;ul&gt;
+		&lt;li&gt;map&lt;/li&gt;
+		&lt;li&gt;suitcase&lt;/li&gt;
+		&lt;li&gt;snacks&lt;/li&gt;
+		&lt;li&gt;
+			&lt;ul&gt;
+				&lt;li&gt;cookies&lt;/li&gt;
+				&lt;li&gt;cake&lt;/li&gt;
+				&lt;li&gt;water&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;mp3 player&lt;/li&gt;
+	&lt;/ul&gt;
+	</pre
+		>
+		<ul>
+			<li>map</li>
+			<li>suitcase</li>
+			<li>snacks</li>
+			<li>
+				<ul>
+					<li>cookies</li>
+					<li>cake</li>
+					<li>water</li>
+				</ul>
+			</li>
+			<li>mp3 player</li>
+		</ul>
+
+		<h3>Ordered Lists</h3>
+		<p>
+			Ordered lists work just like unordered lists except that instead of using bullets, the
+			browswer uses numbers to label list items. Also observe that ordered lists and unordered
+			lists can be combined:
+		</p>
+
+		<pre>
+	&lt;ol&gt;
+		&lt;li&gt;map&lt;/li&gt;
+		&lt;li&gt;suitcase&lt;/li&gt;
+		&lt;li&gt;snacks&lt;/li&gt;
+		&lt;li&gt;
+			&lt;ul&gt;
+				&lt;li&gt;cookies&lt;/li&gt;
+				&lt;li&gt;cake&lt;/li&gt;
+				&lt;li&gt;water&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;li&gt;mp3 player&lt;/li&gt;
+	&lt;/ol&gt;
+	</pre
+		>
+
+		<ol>
+			<li>map</li>
+			<li>suitcase</li>
+			<li>snacks</li>
+			<li>
+				<ul>
+					<li>cookies</li>
+					<li>cake</li>
+					<li>water</li>
+				</ul>
+			</li>
+			<li>mp3 player</li>
+		</ol>
+
+		<hr />
+		<hr />
+		<h1>Links</h1>
+		<p>
+			Links are created using the anchor tag. References can be absolute or relative. In the
+			example below the first link is absolute and the second links is relative. This tag makes
+			use of an attribute named "href". Consider:
+		</p>
+		<pre>
+		You might want to view &lt;a href="http://www.hsutx.edu"&gt;HSU's website&lt;/a&gt;,
+		or if you are really board you can look at the
+		&lt;a href="helloworld.html"&gt;"Hello, World"&lt;/a&gt; document.
+	</pre
+		>
+		<p>
+			You might want to view <a href="http://www.hsutx.edu">HSU's website</a>, or if you are
+			really board you can look at the <a href="helloworld.html">"Hello, World"</a> document.
+		</p>
+
+		<hr />
+		<hr />
+		<h1>Images</h1>
+		<p>
+			Pictures can be displayed on a web page by using the &lt;img&gt; tag. This tag supports a
+			variety of attributes, one of which is used to identify the location and name of the
+			picture to be displayed. The references to the picture name can be absolute or relative:
+		</p>
+
+		<pre>
+	Here is a picture:
+	&lt;img src="terry_sergeant.jpg" alt="Truly dazzling photo" border="0" /&gt;
+	Let's make that a bit smaller!
+	&lt;img src="terry_sergeant.jpg" alt="Truly dazzling photo #2" width="120"
+	border="3" /&gt;
+	</pre
+		>
+		<p>
+			Here is a picture I like from another website:
+			<img src="http://www.hsutx.edu/faculty/images/1103.jpg" alt="TBO" />
+			But this is even a better one:
+			<img src="terry_sergeant.jpg" alt="Truly dazzling photo" />
+			Let's make that a bit smaller!
+			<img src="terry_sergeant.jpg" alt="Truly dazzling photo #2" width="120" />
+		</p>
+		<hr />
+
+		<p>
+			If you want to make a picture to be a link then simply put the img tag inside of an anchor
+			tag:
+		</p>
+		<pre>
+	Click on the picture to visit that guy's website:
+	&lt;a href="http://josephus.sergeantservices.com/"&gt;&lt;img src="terry_sergeant.jpg"
+		 width="120"/&gt;&lt;/a&gt;
+</pre
+		>
+
+		<p>
+			Click on the picture to visit that guy's website:
+			<a href="http://josephus.sergeantservices.com/"
+				><img src="terry_sergeant.jpg" alt="TWS Again" width="120"
+			/></a>
+		</p>
+	</body>
+</html>
