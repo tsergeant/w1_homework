@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+		<title>Current Time in Javascript</title>
+		<style>
+		</style>
+	</head>
+
+	<body>
+		<h1>Current Time in Javascript</h1>
+		<span id="clock"></span>
+		<script>
+			function getCurrentTimeStamp() {
+				var date= new Date();
+				return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds()));
+			}
+			var now= getCurrentTimeStamp();
+			var cs= document.getElementById("clock");
+			cs.innerHTML= now.toUTCString();
+		</script>
+	</body>
+</html>

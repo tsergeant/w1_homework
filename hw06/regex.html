@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Javascript Regex's</title>
+</head>
+
+<body>
+	<h1>Javascript Regex's</h1>
+	<p>Networking guru's are familiar with seeing IPv4 numbers in the
+	traditional dotted notation. Each device on the internet is assigned its
+	own unique IP number. Some example IP numbers:</p>
+	<ul>
+		<li>10.20.121.3</li>
+		<li>1.0.0.127</li>
+		<li>209.165.224.193</li>
+		<li>231.1.1.8</li>
+	</ul>
+
+	<p>Take a moment to inspect the embedded Javascript code below which
+	contains a not-so-great first stab at a regex to properly match an
+	IP number.</p>
+
+	<script>
+	function isValidIPv4(ip) {
+		return ip.search(/\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}/)!=-1;
+	}
+
+	function testIPv4(ip) {
+		if (isValidIPv4(ip))
+			document.writeln("<p>" + ip + " is a valid IPv4 address</p>");
+		else
+			document.writeln("<p>" + ip + " is NOT a valid IPv4 address</p>");
+	}
+
+	testIPv4("123.12.0.123");
+	// NOTE: DO NOT do a search for a regular expression to match an
+	// IP number. You can, however, search for general instructions on
+	// working with regular expressions in Javascript.
+	//
+	// NOTE: We can significantly shorten the regex above by observing
+	// that the pattern ".\d{1,3}" appears three times (and is preceded
+	// by the pattern "\d{1,3}". Rewrite the shorter rule and verify that
+	// it correctly identifies the test value above.
+	//
+	// NOTE: At first glance this seems pretty good. However, the
+	// provided regex also matches the invalid values show below.
+	// Uncomment the entries below and tweak the regex so it
+	// properly eliminates each of these false positives. The last one
+	// particularly difficult.
+
+	// HINT: You'll have to replace \d{1,3} with // an expression that breaks
+	// the pattern down: (25[0-5]|2[0-4]\d| ... etc.)
+	// In this example we match string that are 250-255 OR 200-249. So next,
+	// match 2 digit and one digit numbers.
+
+	// If you work on it (the last one) for 10 minutes and don't have
+	// resolution then you can simply move on.
+
+
+	/*
+	testIPv4("123212101123"); // not valid
+	testIPv4("123.12.0.1232"); // not valid
+	testIPv4("Greetings I am 123.12.0.123"); // not valid
+	testIPv4("290.12.0.132"); // not valid (because each value should be in range 0 to 255)
+	*/
+
+
+	// NOTE: Once you've addressed all of the issues above can you think of
+	// additional strings that may give an incorrect result?
+
+	</script>
+</body>
+</html>
+
