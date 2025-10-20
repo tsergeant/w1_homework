@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<!--
+	v6: You may notice that in the previous version, when we insert a new
+	paragraph, that new paragraph will not respond to being clicked on.
+	The expected behavior is that when any paragraph is clicked on, it
+	will modify its contents to match the text area.
+
+	The reason it doesn't work is that when the event handlers were
+	assigned, that dynamically created paragraph didn't exist.
+
+	Given this fact, you may then find it strange that the "set color
+	of bright paragraphs button DOES in fact work on the newly
+	added paragraph. The reason? The event handler in this case
+	was not assigned to the paragraphs (some of which are added
+	after the code runs), but rather to the button (which existed
+	when the code ran). The behavior that is executed when the
+	button is clicked is to find all p.bright elements and
+	change their background color. So, it will find all elements
+	that exist at the time the button is clicked.
+	example of "event delegation".
+
+	To get the click action on the paragraphs to be handled properly
+	(so it will work on current paragraphs and those added in the
+	future) we take advantage of "event delegation".
+
+	Recall than we a paragraph is clicked, that click event will
+	bubble up (or propagate) to its parents one level at a time.
+	The paragraphs' parent is the #colors section. So, we can
+	listen for a click on the #colors section and then search
+	to see what kind of element was actually being clicked on.
+	Any of the buttons or other elements in the section will
+	also have their clicks propagate to the parent so we
+	have to determine what element was involved. Move to
+	the very bottom of the page to see how the handler can be
+	re-written to be future-proof in this case.
+-->
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Terry Sergeant">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Using Javascript to Modify Page via DOM</title>
+	<style type="text/css">
+		html {
+			box-sizing: border-box;
+			font-size: 1.2em;
+		}
+		*,
+		*:before,
+		*:after {
+			box-sizing: inherit;
+		}
+
+		#panels {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		#panels div {
+			width: 50%;
+		}
+
+		#panels div:first-of-type {
+			background-color: #ccccff;
+			color: blue;
+		}
+
+		#panels div:last-of-type {
+			background-color: purple;
+			color: white;
+		}
+
+		#introp {
+			background-color: #ccc;
+		}
+
+		.bright {
+			background-color: #f4e668;
+		}
+
+		textarea {
+			width: 50%;
+			height: 100px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Demo of Manipulating the DOM via Javascript</h1>
+
+	<section id="colors">
+		<p id="introp">Here is the introductory paragraph and it has an id of 'introp' on it. Click on this
+		paragraph to change it background color to white.</p>
+		<p class="bright">Here is another paragraph. It has a class called 'bright' assigned to it.</p>
+		<p class="bright">Here is a third paragraph and it also has a class called 'bright'.</p>
+
+		Type in a valid RGB color you would like to use as a background color: <input type="text" id="bgcol"><br/>
+		<input type="button" id="colorButton" value="Click Here to Set All Bright Paragraphs to the Color You Chose"><br/>
+		<hr/>
+
+		<textarea>Type a paragraph of your own in this text area and then click on one of the paragraphs above to replace its contents with your stuff.
+		</textarea>
+		<br/>
+		<input type="button" id="paraTopButton" value="Click Here to Create a New Paragraph at Top of Section">
+
+	</section>
+
+	<br/><hr/><br/>
+
+
+	<section id="panels">
+		<div>
+			<h2>Here is the Left Panel</h2>
+		</div>
+
+		<div>
+			<h2>Here is the Right Panel</h2>
+		</div>
+	</section>
+
+	<nav>
+		<form method="post" >
+			<table>
+				<tr><td>Type your text here: <input type="text" id="newtext"></td></tr>
+				<tr><td>Check here to encapsulate the text in a text box: <input type="checkbox" id="enclose"></td></tr>
+				<tr><td><input type="button" value="Add Text to Left Panel" id="leftButton"></td></tr>
+				<tr><td><input type="button" value="Add Text to Right Panel" id="rightButton"></td></tr>
+			</table>
+		</form>
+	</nav>
+
+	<script>
+	// Paragraphs that have a class of bright need to be treated differently than those
+	// who don't have the class. Our strategy here is to cycle through all the paragraphs
+	// and look for the assigned class and behave accordingly. NOTE: We could also utilize
+	// event delegation here and omit the loop. This would be a good exercise!
+
+	let paras = document.querySelectorAll("#colors p");
+	for (let para of paras) {
+		if (!para.classList.contains("bright")) {
+			para.addEventListener("click", (evt)=> {
+				evt.target.style.backgroundColor= "white";
+			});
+		}
+	}
+
+	// The .bright paragraphs are no longer clickable, but rather get adjusted when
+	// the button is clicked. We now have multiple buttons in the #colors section so
+	// I decided to put an id on each of them.
+	document.getElementById("colorButton").addEventListener("click", ()=> {
+		let color = document.getElementById("bgcol").value; // get color from the box
+		let paras = document.querySelectorAll("p.bright");  // find all the bright paragraphs
+		for (let para of paras) {
+			para.style.backgroundColor = color;
+		}
+	});
+
+
+	// Here we use .querySelector("#id") rather than .getElementById("id")
+	// for no particular reason other than to show that both produce the same
+	// result.
+	// When we are replacing the entire contents of an element we modify
+	// .innerHTML; but in this case we want to add something without
+	// destroying what is already there. So, we select the #colors section
+	// and then call .insertAdjacentHTML(where,what)
+	//		The second parameter specifies what we want to add
+	//		The first parameter specifies where the new content should be added:
+	//		* 'beforebegin': Before the element itself.
+	//		* 'afterbegin': Just inside the element, before its first child.
+	//		* 'beforeend': Just inside the element, after its last child.
+	//		* 'afterend': After the element itself.
+	//
+	// In this situation we want a new paragraph with contents from the
+	// text area to be added (second parameter) and we want it to be
+	// added after the begin of the section (i.e., inside and at the
+	// beginning of the section). And, for fun, we give it a class of
+	// "bright".
+
+	document.querySelector("#paraTopButton").addEventListener("click", ()=> {
+		document.querySelector("#colors").insertAdjacentHTML(
+			'afterbegin',
+			'<p class="bright">' + document.querySelector("textarea").value + '</p>'
+		);
+	});
+
+	// We select the entire #colors section and listen for click on anything
+	// inside of it. We accept the event object as a parameter (evt) and
+	// look at the target of the event to see where the click originated.
+	// The evt.target.matches() method accepts a CSS selector as a parameter
+	// and returns true if the target would be matched by the selector.
+	//
+	document.querySelector("#colors").addEventListener("click", (evt)=> {
+		if (evt.target.matches("p")) {   // if it was a paragraph that was clicked
+			evt.target.innerHTML = document.querySelector("textarea").value;
+		}
+	});
+
+	/*
+		Here's what the original event handler looked like. Notice that the
+		solution above is shorter and is "future proof".
+
+	paras = document.querySelectorAll("#colors p");
+	for (let para of paras) {
+		para.addEventListener("click", (evt)=> {
+			evt.target.innerHTML = document.querySelector("textarea").value;
+		});
+	}
+	*/
+	</script>
+</body>
+</html>

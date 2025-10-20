@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Shopping List App</title>
+	<link rel="stylesheet" type="text/css" href="normalize.min.css">
+
+	<style>
+		html {
+			box-sizing:border-box;
+		}
+
+		*,*:before,*:after {
+			box-sizing:inherit;
+		}
+
+		body {
+			background-color:#bbb;
+			color:#483D8B;
+			font-size:12pt;
+			max-width:960px;
+			margin:0 auto;
+		}
+
+		main {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+      input {
+        background-color: #ddd;
+        color: #483d8b;
+      }
+
+      #the-list input {
+        background-color: #ccc;
+        border: none;
+		}
+
+		button {
+			color:#483D8B;
+		}
+
+		section {
+			background-color:#ccc;
+			min-height:500px;
+			width:50%;
+			padding:5px;
+			border:5px inset;
+		}
+
+		h1,h2 {
+			text-align:center;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<main>
+		<h1>Shopping List App</h1>
+		<section id="control-panel">
+			<h2>Control Panel</h2>
+			<input type="text" id="new-item">
+			<button>Add</button>
+		</section>
+		<section id="the-list">
+			<h2>The List</h2>
+			<ul>
+			</ul>
+		</section>
+	</main>
+</body>
+</html>
